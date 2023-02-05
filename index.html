@@ -18,11 +18,11 @@
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
-      alert("You entered: " + input);
+      alert("You entered: " + universe);
     }
     async function makeCompletionRequest(prompt) {
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-      const apiKey = 'YOUR_OPENAI_API_KEY';
+      const apiKey = getKey();
 
       const options = {
         method: 'POST',
@@ -47,6 +47,37 @@
         console.error(error);
         return '';
       }
+    }
+    function getKey() {
+      import {
+        SecretsManagerClient,
+        GetSecretValueCommand,
+      } from "@aws-sdk/client-secrets-manager";
+
+      const secret_name = "openai-key";
+
+      const client = new SecretsManagerClient({
+        region: "us-east-1",
+      });
+
+      let response;
+
+      try {
+        response = await client.send(
+          new GetSecretValueCommand({
+            SecretId: secret_name,
+            VersionStage: "AWSCURRENT", // VersionStage defaults to AWSCURRENT if unspecified
+          })
+        );
+      } catch (error) {
+        // For a list of exceptions thrown, see
+        // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        throw error;
+    }
+
+const secret = response.SecretString;
+
+// Your code goes here
     }
     </script>
   </body>
