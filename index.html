@@ -11,10 +11,10 @@
       <input type="text" name="characters"><br><br>
       <label>Genre:</label>
       <input type="text" name="genre"><br><br>
-      <input type="submit" value="Submit" onclick="submitForm()">
+      <button id="myButton">Submit</button>
     </form>
     <script>
-    function submitForm() {
+    async function submitForm() {
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
@@ -81,6 +81,10 @@
 
     return secret
     }
+      
+    document.getElementById('myButton').addEventListener('click', async () => {
+      await submitForm();
+    });
     </script>
   </body>
 </html>
