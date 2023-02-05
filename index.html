@@ -13,5 +13,39 @@
       <input type="text" name="genre"><br><br>
       <input type="submit" value="Submit">
     </form>
+    <script>
+    function submitForm() {
+      var input = document.getElementById("input_field").value;
+      alert("You entered: " + input);
+    }
+    async function makeCompletionRequest(prompt) {
+      const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+      const apiKey = 'YOUR_OPENAI_API_KEY';
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          max_tokens: 100,
+          n: 1,
+          stop: '',
+          temperature: 0.5
+        })
+      };
+
+      try {
+        const response = await fetch(endpoint, options);
+        const json = await response.json();
+        return json.choices[0].text;
+      } catch (error) {
+        console.error(error);
+        return '';
+      }
+    }
+    </script>
   </body>
 </html>
