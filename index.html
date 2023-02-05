@@ -18,11 +18,13 @@
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
-      alert("You entered: " + universe);
+      prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. A:`
+      fanfic = await makeCompletionRequest(prompt)
+      alert(fanfic);
     }
     async function makeCompletionRequest(prompt) {
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-      const apiKey = getKey();
+      const apiKey = await getKey();
 
       const options = {
         method: 'POST',
@@ -48,7 +50,7 @@
         return '';
       }
     }
-    function getKey() {
+    async function getKey() {
       import {
         SecretsManagerClient,
         GetSecretValueCommand,
@@ -75,9 +77,9 @@
         throw error;
     }
 
-const secret = response.SecretString;
+    const secret = response.SecretString;
 
-// Your code goes here
+    return secret
     }
     </script>
   </body>
