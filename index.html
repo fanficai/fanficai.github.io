@@ -13,7 +13,9 @@
       <input type="text" id="genre"><br><br>
       <button id="myButton">Submit</button>
     </form>
-    <script src="https://unpkg.com/unfetch@4.1.0/dist/unfetch.umd.js">
+    <script src="https://unpkg.com/unfetch@4.1.0/dist/unfetch.umd.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+    <script>
     async function submitForm() {
       console.log("Got here!")
       var universe = document.getElementById("universe").value;
@@ -22,7 +24,7 @@
       prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. A:`;
       fanfic = await makeCompletionRequest(prompt);
       alert(fanfic);
-      console.log("fanfic")
+      console.log(fanfic)
     }
     async function makeCompletionRequest(prompt) {
       console.log("Got to the request")
