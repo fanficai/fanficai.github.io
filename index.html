@@ -1,19 +1,21 @@
 <html>
-  <head>
-    <title>Input Form</title>
-  </head>
-  <body>
-    <h1>Enter your information:</h1>
-    <label>Universe:</label>
-    <input type="text" id="universe"><br><br>
-    <label>Character(s):</label>
-    <input type="text" id="characters"><br><br>
-    <label>Genre:</label>
-    <input type="text" id="genre"><br><br>
-    <button id="myButton">Submit</button>
-    <script src="https://unpkg.com/unfetch@4.1.0/dist/unfetch.umd.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
-    <script>
+
+<head>
+  <title>Input Form</title>
+</head>
+
+<body>
+  <h1>Enter your information:</h1>
+  <label>Universe:</label>
+  <input type="text" id="universe"><br><br>
+  <label>Character(s):</label>
+  <input type="text" id="characters"><br><br>
+  <label>Genre:</label>
+  <input type="text" id="genre"><br><br>
+  <button id="myButton">Submit</button>
+  <script src="https://unpkg.com/unfetch@4.1.0/dist/unfetch.umd.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+  <script>
     async function submitForm() {
       console.log("Got here!")
       var universe = document.getElementById("universe").value;
@@ -28,7 +30,7 @@
       console.log("Got to the request")
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
       const apiKey = await getSecretValue("openai-key");
-      
+
 
       const options = {
         method: 'POST',
@@ -77,10 +79,10 @@
         throw err;
       }
     }
-      
+
     document.getElementById('myButton').addEventListener('click', async () => {
       await submitForm();
     });
-    </script>
-  </body>
+  </script>
+</body>
 </html>
