@@ -26,7 +26,6 @@
     }
     async function makeCompletionRequest(prompt) {
       console.log("Got to the request")
-      const AWS = require('aws-sdk');
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
       const apiKey = await getSecretValue("openai-key");
       
@@ -57,6 +56,7 @@
     }
     async function getSecretValue(secretName) {
       console.log("Got to the secret manager method")
+      const AWS = window.AWS;
       const client = new AWS.SecretsManager({
         region: 'us-east-1'
       });
