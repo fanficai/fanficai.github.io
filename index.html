@@ -16,6 +16,9 @@
   <script src="https://unpkg.com/unfetch@4.1.0/dist/unfetch.umd.js"></script>
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
   <script>
+    AWS.config.update({
+      region: 'us-east-1'
+    });
     async function submitForm() {
       console.log("Got here!")
       var universe = document.getElementById("universe").value;
@@ -30,7 +33,6 @@
       console.log("Got to the request")
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
       const apiKey = await getSecretValue("openai-key");
-
 
       const options = {
         method: 'POST',
@@ -59,9 +61,7 @@
     async function getSecretValue(secretName) {
       console.log("Got to the secret manager method")
       const AWS = window.AWS;
-      const client = new AWS.SecretsManager({
-        region: 'us-east-1'
-      });
+      const client = new AWS.SecretsManager();
 
       try {
         const response = await client.getSecretValue({
