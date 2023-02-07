@@ -15,17 +15,20 @@
   <label>Genre:</label>
   <input type="text" id="genre"><br><br>
   <button id="myButton">Submit</button>
+  <label id="result"></label>
   <script type="text/javascript">
     AWS.config.update({
       region: 'us-east-1'
     });
     async function submitForm() {
       console.log("Got here!")
+      document.getElementById("result").textContent = "Loading...";
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
       prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. A:`;
       fanfic = await makeCompletionRequest(prompt);
+      document.getElementById("result").textContent = fanfic;
       alert(fanfic);
       console.log(fanfic)
     }
@@ -43,7 +46,7 @@
       try {
         const response = await fetch(endpoint, options);
         const json = await response.json();
-        return json;
+        return json.completion;
       } catch (error) {
         console.error(error);
         return '';
