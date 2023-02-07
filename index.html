@@ -32,7 +32,7 @@
     async function makeCompletionRequest(prompt) {
       console.log("Got to the request")
       const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-      const apiKey = await getSecretValue("openai-key");
+      const apiKey = "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"
 
       const options = {
         method: 'POST',
@@ -56,27 +56,6 @@
       } catch (error) {
         console.error(error);
         return '';
-      }
-    }
-    async function getSecretValue(secretName) {
-      console.log("Got to the secret manager method")
-      const AWS = window.AWS;
-      const client = new AWS.SecretsManager();
-
-      try {
-        const response = await client.getSecretValue({
-          SecretId: secretName
-        }).promise();
-
-        if ('SecretString' in response) {
-          return response.SecretString;
-        } else {
-          let buff = new Buffer(response.SecretBinary, 'base64');
-          return buff.toString('ascii');
-        }
-      } catch (err) {
-        console.log("Error retrieving secret: " + err);
-        throw err;
       }
     }
 
