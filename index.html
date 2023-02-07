@@ -13,6 +13,8 @@
   <input type="text" id="characters"><br><br>
   <label>Genre:</label>
   <input type="text" id="genre"><br><br>
+  <label>A few words to make things more interesting:</label>
+  <input type="text" id="wildcard"><br><br>
   <button id="myButton">Submit</button>
   <label id="result"></label>
   <script type="text/javascript">
@@ -25,7 +27,8 @@
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
-      prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. A:`;
+      var wildcard = document.getElementById("wildcard").value;
+      prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. To make things more interesting, add ${wildcard} to it. A:`;
       fanfic = await makeCompletionRequest(prompt);
       document.getElementById("result").textContent = fanfic;
       alert(fanfic);
