@@ -29,7 +29,7 @@
       var characters = document.getElementById("characters").value;
       var genre = document.getElementById("genre").value;
       var wildcard = document.getElementById("wildcard").value;
-      prompt = `Q: Please create a summary of a creative, interesting fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. To make things more interesting, add ${wildcard} to it. A:`;
+      prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. To make things more interesting, add ${wildcard} to it. A:`;
       fanfic = await makeCompletionRequest(prompt);
       document.getElementById("result").textContent = fanfic;
     }
