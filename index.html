@@ -34,8 +34,6 @@
       prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. To make things more interesting, add ${wildcard} to it. A:`;
       fanfic = await makeCompletionRequest(prompt);
       document.getElementById("result").textContent = fanfic;
-      alert(fanfic);
-      console.log(fanfic)
     }
     async function makeCompletionRequest(prompt) {
       console.log("Got to the request")
