@@ -25,7 +25,6 @@
       region: 'us-east-1'
     });
     async function submitForm() {
-      console.log("Got here!")
       document.getElementById("result").textContent = "Loading...";
       var universe = document.getElementById("universe").value;
       var characters = document.getElementById("characters").value;
@@ -36,7 +35,6 @@
       document.getElementById("result").textContent = fanfic;
     }
     async function makeCompletionRequest(prompt) {
-      console.log("Got to the request")
       const endpoint = 'https://lxqqwnn8jl.execute-api.us-east-1.amazonaws.com/prod/';
 
       const options = {
