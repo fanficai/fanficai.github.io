@@ -7,17 +7,19 @@
 </head>
 
 <body>
-  <h1>Enter your information:</h1>
-  <label>Universe:</label>
-  <input type="text" id="universe"><br><br>
-  <label>Character(s):</label>
-  <input type="text" id="characters"><br><br>
-  <label>Genre:</label>
-  <input type="text" id="genre"><br><br>
-  <label>A few words to make things more interesting:</label>
-  <input type="text" id="wildcard"><br><br>
-  <button id="myButton">Submit</button>
-  <label id="result"></label>
+  <span>
+    <h1>Enter your information:</h1>
+    <label>Universe:</label>
+    <input type="text" id="universe"><br><br>
+    <label>Character(s):</label>
+    <input type="text" id="characters"><br><br>
+    <label>Genre:</label>
+    <input type="text" id="genre"><br><br>
+    <label>A few words to make things more interesting:</label>
+    <input type="text" id="wildcard"><br><br>
+    <button id="submit">Submit</button><br><br>
+    <label id="result"></label>
+  </span>
   <script type="text/javascript">
     AWS.config.update({
       region: 'us-east-1'
@@ -56,7 +58,7 @@
       }
     }
 
-    document.getElementById('myButton').addEventListener('click', async () => {
+    document.getElementById('submit').addEventListener('click', async () => {
       await submitForm();
     });
   </script>
