@@ -11,54 +11,6 @@
   <div id="header">
     <a href="https://fanficai.github.io/bestof">Best of</a>
   </div>
-  <h1>Enter your information:</h1>
-  <label>Universe:</label>
-  <input type="text" id="universe"><br><br>
-  <label>Character(s):</label>
-  <input type="text" id="characters"><br><br>
-  <label>Genre:</label>
-  <input type="text" id="genre"><br><br>
-  <label>A few words to make things more interesting:</label>
-  <input type="text" id="wildcard"><br><br>
-  <button id="submit">Submit</button><br><br>
-  <label id="result"></label>
-  <script type="text/javascript">
-    AWS.config.update({
-      region: 'us-east-1'
-    });
-    async function submitForm() {
-      document.getElementById("result").textContent = "Loading...";
-      var universe = document.getElementById("universe").value;
-      var characters = document.getElementById("characters").value;
-      var genre = document.getElementById("genre").value;
-      var wildcard = document.getElementById("wildcard").value;
-      prompt = `Q: Please create a summary of a fanfiction from the ${universe} fictional universe with the characters ${characters} in the ${genre} genre. To make things more interesting, add ${wildcard} to it. A:`;
-      fanfic = await makeCompletionRequest(prompt);
-      document.getElementById("result").textContent = fanfic;
-    }
-    async function makeCompletionRequest(prompt) {
-      const endpoint = 'https://lxqqwnn8jl.execute-api.us-east-1.amazonaws.com/prod/';
-
-      const options = {
-        method: 'POST',
-        body: JSON.stringify({
-          prompt: prompt
-        })
-      };
-
-      try {
-        const response = await fetch(endpoint, options);
-        const json = await response.json();
-        return json.completion;
-      } catch (error) {
-        console.error(error);
-        return '';
-      }
-    }
-
-    document.getElementById('submit').addEventListener('click', async () => {
-      await submitForm();
-    });
-  </script>
+  <h1>I am out of free OpenAI tokens, so this project is over. Thank you for using it! Check out the best of page in the top left to see some of the best generated fanfictions.</h1>
 </body>
 </html>
